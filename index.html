@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple WWDC 2024</title>
+    <script src="https://kit.fontawesome.com/8beda44f10.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        html {
+            height: 100vh;
+        }
+
+        .sound {
+            font-size: 5rem;
+            text-align: center;
+            width: 100%;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+
+        .air {
+            font-size: 12rem;
+            text-align: center;
+            width: 100%;
+            position: fixed;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        body {
+            background: #000;
+            color: white;
+            height: 1000vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        canvas {
+            position: fixed;
+            left: 51%;
+            top: 33%;
+            max-height: 100vh;
+            max-width: 100vw;
+            transform: translate(-50%, -50%);
+        }
+
+        .value-props-video {
+            position: absolute;
+            left: 50%;
+            width: 100%;
+            transform: translateX(-50%);
+            display: none;
+            opacity: 0;
+            z-index: 1;
+            transition: opacity 2s ease-in-out;
+        }
+
+
+        #videoControlBtn {
+            position: fixed;
+            bottom: 20px;
+            z-index: 3;
+            right: 0;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: none;
+        }
+
+
+
+
+        .content-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            margin-top: 100vh;
+            z-index: 2;
+            position: relative;
+        }
+
+        .content-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+
+
+    <h1 class="air">AirpodsPro</h1>
+    <h2 class="sound">Groundbreaking <br /> Sound</h2>
+    <video class="value-props-video" muted loop
+        src="https://www.apple.com//105/media/us/airpods-pro/2022/d2deeb8e-83eb-48ea-9721-f567cf0fffa8/anim/spatial-audio/large.mp4"></video>
+    </video>
+    <canvas></canvas>
+
+    <button id="videoControlBtn">
+        <i class="fa-solid fa-play"></i>
+
+    </button>
+
+    <div class="content-section">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae consectetur debitis ex eos eum earum ipsam
+        unde
+        optio id, est quasi reprehenderit assumenda ipsum consequuntur perspiciatis vitae nobis harum pariatur
+    </div>
+    <div class="content-section">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae consectetur debitis ex eos eum earum ipsam
+        unde
+        optio id, est quasi reprehenderit assumenda ipsum consequuntur perspiciatis vitae nobis harum pariatur
+    </div>
+    <div class="content-section">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae consectetur debitis ex eos eum earum ipsam
+        unde
+        optio id, est quasi reprehenderit assumenda ipsum consequuntur perspiciatis vitae nobis harum pariatur
+    </div>
+
+
+
+
+    <div class="landing_container">
+
+
+
+    </div>
+
+    <script type="module" src="./script.js"></script>
+
+</body>
+
+</html>
