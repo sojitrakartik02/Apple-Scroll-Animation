@@ -60,7 +60,7 @@
             transform: translateX(-50%);
             display: none;
             opacity: 0;
-            z-index: 1;
+            z-index: 2;
             transition: opacity 2s ease-in-out;
         }
 
@@ -78,14 +78,18 @@
         }
 
 
-
+        .container {
+            position: relative;
+            width: 100%;
+            z-index: 1;
+            height: 100vh;
+        }
 
         .content-section {
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 1s ease-out, transform 1s ease-out;
             margin-top: 100vh;
-            z-index: 2;
             position: relative;
         }
 
@@ -109,33 +113,40 @@
 
     <h1 class="air">AirpodsPro</h1>
     <h2 class="sound">Groundbreaking <br /> Sound</h2>
-    <video class="value-props-video" muted loop
-        src="https://www.apple.com//105/media/us/airpods-pro/2022/d2deeb8e-83eb-48ea-9721-f567cf0fffa8/anim/spatial-audio/large.mp4"></video>
-    </video>
-    <canvas></canvas>
+    <!-- <video class="value-props-video" muted loop
+        src="https://www.apple.com//105/media/us/airpods-pro/2022/d2deeb8e-83eb-48ea-9721-f567cf0fffa8/anim/spatial-audio/large.mp4">
+    </video> -->
+    <iframe id="videoPlayer" class="value-props-video" src="https://www.youtube.com/embed/ql6mhhHCldY?enablejsapi=1"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+
 
     <button id="videoControlBtn">
         <i class="fa-solid fa-play"></i>
 
     </button>
 
-    <div class="content-section">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae consectetur debitis ex eos eum earum ipsam
-        unde
-        optio id, est quasi reprehenderit assumenda ipsum consequuntur perspiciatis vitae nobis harum pariatur
-    </div>
-    <div class="content-section">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae consectetur debitis ex eos eum earum ipsam
-        unde
-        optio id, est quasi reprehenderit assumenda ipsum consequuntur perspiciatis vitae nobis harum pariatur
-    </div>
-    <div class="content-section">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae consectetur debitis ex eos eum earum ipsam
-        unde
-        optio id, est quasi reprehenderit assumenda ipsum consequuntur perspiciatis vitae nobis harum pariatur
+    <div class="container">
+        <div class="content-section">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae consectetur debitis ex eos eum earum ipsam
+            unde
+            optio id, est quasi reprehenderit assumenda ipsum consequuntur perspiciatis vitae nobis harum pariatur
+        </div>
+        <div class="content-section">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae consectetur debitis ex eos eum earum ipsam
+            unde
+            optio id, est quasi reprehenderit assumenda ipsum consequuntur perspiciatis vitae nobis harum pariatur
+        </div>
+        <div class="content-section">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae consectetur debitis ex eos eum earum ipsam
+            unde
+            optio id, est quasi reprehenderit assumenda ipsum consequuntur perspiciatis vitae nobis harum pariatur
+        </div>
     </div>
 
 
+    <canvas></canvas>
 
 
     <div class="landing_container">

@@ -12,8 +12,10 @@ class Application {
     this.currentFrameIndex = 1;
 
     this.isVideoPlaying = false;
-    this.videoElement = document.querySelector("video.value-props-video");
+    this.videoElement = document.querySelector("iframe.value-props-video");
     this.videoControlBtn = document.querySelector("#videoControlBtn");
+    this.player = null;
+    this.loadYouTubeAPI();
     for (let i = 0; i < this.totalImages; i++) {
       const img = new Image();
       img.onload = () => {
@@ -31,59 +33,128 @@ class Application {
 
     this.videoControlBtn.addEventListener("click", this.toggleVideoPlayback);
   }
+  loadYouTubeAPI() {
+    const tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    window.onYouTubeIframeAPIReady = this.onYouTubeIframeAPIReady.bind(this);
+  }
+  onYouTubeIframeAPIReady() {
+    this.player = new YT.Player("videoPlayer", {
+      events: {
+        onReady: this.onPlayerReady.bind(this),
+      },
+    });
+  }
+
+  onPlayerReady(event) {}
 
   toggleVideoPlayback = () => {
     if (this.isVideoPlaying) {
-      this.videoElement.pause();
+      this.videoElement.pauseVideo();
       this.videoControlBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
     } else {
-      this.videoElement.play();
+      this.videoElement.playVideo();
       this.videoControlBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
     }
     this.isVideoPlaying = !this.isVideoPlaying;
   };
 
   handleDifferentUIComponents = {
+    // handleHeadingAnimationBasedonScroll: () => {
+    //   const heading = document.querySelector("h1.air");
+    //   const soundText = document.querySelector("h2.sound");
+    //   const video = document.querySelector("video.value-props-video");
+    //   const scrollTop = window.scrollY;
+    //   const viewportHeight = window.innerHeight;
+    //   const startBtn = document.querySelector("button");
+    //   const contentSection = document.querySelectorAll(".content-section");
+
+    //   const handingOpacity = Math.max(
+    //     0,
+    //     2.8 - scrollTop / (3 * viewportHeight)
+    //   );
+    //   heading.style.opacity = handingOpacity;
+
+    //   const scale = 1 + scrollTop / (2 * viewportHeight);
+    //   heading.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    //   const SoundScale = 1 + scrollTop / (20 * viewportHeight);
+
+    //   if (handingOpacity === 0 && SoundScale < 1.48) {
+    //     soundText.style.display = "block";
+    //     soundText.style.transform = `translate(-50%,-50%) scale(${SoundScale})`;
+    //     soundText.style.opacity = "1";
+    //     video.style.display = "none";
+    //     startBtn.style.display = "none";
+    //     contentSection.forEach((section) => {
+    //       section.style.display = "none"; // Hide all content sections
+    //     });
+    //     video.style.opacity = 0;
+    //   } else if (SoundScale >= 1.48) {
+    //     soundText.style.display = "none";
+    //     startBtn.style.display = "block";
+    //     video.style.display = "block";
+    //     video.style.opacity = "1";
+    //     contentSection.forEach((section) => {
+    //       section.classList.add("visible"); // Show and animate content sections
+    //       section.style.display = "block";
+    //     });
+    //   } else {
+    //     soundText.style.display = "none";
+    //     video.style.display = "none";
+    //     startBtn.style.display = "none";
+    //   }
+    //   console.log("Video element:", this.videoElement);
+    //   console.log("Video display:", this.videoElement.style.display);
+    //   console.log("Video opacity:", this.videoElement.style.opacity);
+    // },
     handleHeadingAnimationBasedonScroll: () => {
       const heading = document.querySelector("h1.air");
       const soundText = document.querySelector("h2.sound");
-      const video = document.querySelector("video.value-props-video");
+      const video = document.querySelector(".value-props-video");
       const scrollTop = window.scrollY;
       const viewportHeight = window.innerHeight;
       const startBtn = document.querySelector("button");
-      const contentSection = document.querySelectorAll(".content-section");
+      const contentSections = document.querySelectorAll(".content-section");
 
       const handingOpacity = Math.max(
         0,
-        2.8 - scrollTop / (3 * viewportHeight)
+        2.3 - scrollTop / (3 * viewportHeight)
       );
       heading.style.opacity = handingOpacity;
 
       const scale = 1 + scrollTop / (2 * viewportHeight);
       heading.style.transform = `translate(-50%, -50%) scale(${scale})`;
-      const SoundScale = 1 + scrollTop / (20 * viewportHeight);
+      const soundScale = 1 + scrollTop / (20 * viewportHeight);
 
-      if (handingOpacity === 0 && SoundScale < 1.48) {
+      if (handingOpacity === 0 && soundScale < 1.44) {
         soundText.style.display = "block";
-        soundText.style.transform = `translate(-50%,-50%) scale(${SoundScale})`;
+        soundText.style.transform = `translate(-50%,-50%) scale(${soundScale})`;
         soundText.style.opacity = "1";
+
         video.style.display = "none";
         startBtn.style.display = "none";
+        contentSections.forEach((section) => {
+          section.style.display = "none";
+        });
         video.style.opacity = 0;
-      } else if (SoundScale >= 1.48) {
+      } else if (soundScale >= 1.44) {
         soundText.style.display = "none";
         startBtn.style.display = "block";
         video.style.display = "block";
         video.style.opacity = "1";
-        contentSection.classList.add("visible");
+        video.play();
+        contentSections.forEach((section) => {
+          section.classList.add("visible");
+          section.style.display = "block";
+          section.style.opacity = "1";
+        });
       } else {
         soundText.style.display = "none";
         video.style.display = "none";
         startBtn.style.display = "none";
       }
-      console.log("Video element:", this.videoElement);
-      console.log("Video display:", this.videoElement.style.display);
-      console.log("Video opacity:", this.videoElement.style.opacity);
     },
   };
 
