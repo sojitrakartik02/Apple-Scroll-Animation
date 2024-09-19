@@ -48,7 +48,9 @@ class Application {
     });
   }
 
-  onPlayerReady(event) {}
+  onPlayerReady(event) {
+    // You can now control the video using `this.player`
+  }
 
   toggleVideoPlayback = () => {
     if (this.isVideoPlaying) {
